@@ -7,12 +7,12 @@ public class FocusMiniGame : MonoBehaviour
     public CanvasGroup canvasGroup; // Assign in the Inspector
 
     private int pressCount = 0;
-    public int requiredPresses = 20; // How many times player must press Spacebar
+    public int requiredPresses = 20; // Number of times the player needs to press Spacebar
     private bool isActive = false;
 
     void Start()
     {
-        canvasGroup.alpha = 0; // Hide the panel initially
+        canvasGroup.alpha = 0; // Hide panel initially
     }
 
     public void StartMiniGame()
@@ -20,6 +20,8 @@ public class FocusMiniGame : MonoBehaviour
         pressCount = 0;
         isActive = true;
         canvasGroup.alpha = 1; // Show panel
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
     }
 
     void Update()
@@ -42,6 +44,8 @@ public class FocusMiniGame : MonoBehaviour
     {
         isActive = false;
         canvasGroup.alpha = 0; // Hide panel
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
         Time.timeScale = 1f; // Resume game
     }
 }
