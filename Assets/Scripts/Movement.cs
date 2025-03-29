@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Collider2D platformCollider;
 
+    [SerializeField] private Transform respawn;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -48,6 +49,14 @@ public class PlayerMovement : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "BlackHole")
+        {
+            transform.position = respawn.transform.position;
         }
     }
 }
