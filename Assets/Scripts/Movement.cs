@@ -6,18 +6,37 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 6f;
     private bool isFacingRight = true;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    private Collider2D platformCollider;
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
 
     void Update()
     {
-        moveInput.x = Input.GetAxisRaw("Horizontal"); // Get input from A/D or Left/Right keys
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        Flip();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Flip()
+    {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale; 
+        }
     }
 }
