@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;  // Speed of the player
-    private Rigidbody2D rb2D;
+    private Rigidbody2D rb;
     private Vector2 moveInput;
 
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -18,6 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb2D.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
     }
 }
