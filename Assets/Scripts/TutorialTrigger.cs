@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TutorialTrigger : MonoBehaviour
+public class TutorialManager : MonoBehaviour
 {
     public GameObject tutorialPanel;
     private bool hasBeenShown = false;
@@ -10,16 +10,16 @@ public class TutorialTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !hasBeenShown)
         {
             tutorialPanel.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 0f; 
         }
     }
 
     private void Update()
     {
-        if (tutorialPanel.activeSelf && Input.GetMouseButtonDown(0))
+        if (tutorialPanel.activeSelf && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
             tutorialPanel.SetActive(false);
-            Time.timeScale = 1f;
+            Time.timeScale = 1f; 
             hasBeenShown = true;
         }
     }
