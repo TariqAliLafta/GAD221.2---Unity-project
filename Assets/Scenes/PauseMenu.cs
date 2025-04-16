@@ -27,4 +27,12 @@ public class PauseMenu : MonoBehaviour
     public void Unpause()
     {
     }
+
+    public void FixedUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            Pause();
+        }
+    }
 }
