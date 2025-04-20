@@ -10,21 +10,21 @@ public class TaskManager : MonoBehaviour
     [System.Serializable]
     public class Task
     {
-        public string text;
         public string description;
+        public string text => description; // Read-only property
         public bool isDistraction;
         public bool isCompleted;
+
         public GameObject uiObject;
         public Image scribbleOverlay;
 
-        public Task(string text, bool isDistraction = false)
+        public Task(string description, GameObject uiObject, Image scribbleOverlay, bool isDistraction = false)
         {
-            this.text = text;
-            this.description = text; // Default description same as text
+            this.description = description;
+            this.uiObject = uiObject;
+            this.scribbleOverlay = scribbleOverlay;
             this.isDistraction = isDistraction;
             this.isCompleted = false;
-            this.uiObject = null;
-            this.scribbleOverlay = null;
         }
     }
 
@@ -33,15 +33,17 @@ public class TaskManager : MonoBehaviour
 
     private List<Task> taskList = new List<Task>();
 
-    private void Start()
-    {
-        // Add initial task on game start
-        AddTask("Go to grocery store and buy ingredients for meal", false);
-    }
-
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        // Add initial task on game start
+        Debug.Log("Adding initial task...");
+        AddTask("Go to grocery store and buy ingredients for meal", false);
+
     }
 
     public void AddTask(string description, bool scratchOutMain = true)
@@ -53,12 +55,7 @@ public class TaskManager : MonoBehaviour
         taskText.text = description;
         scribble.enabled = false;
 
-        Task newTask = new Task(description)
-        {
-            description = description,
-            uiObject = taskUI,
-            scribbleOverlay = scribble
-        };
+        Task newTask = new Task(description, taskUI, scribble, false); // false = not a distraction by default
 
         taskList.Add(newTask);
 
