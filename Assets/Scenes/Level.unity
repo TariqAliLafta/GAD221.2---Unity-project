@@ -1053,6 +1053,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructionPanel: {fileID: 611810298}
+  dialogueLines:
+  - Where are you headed?
+  - You do remember where you were headed right?
+  - If you don't...try heading back to jog your memory
+  - retrace to recollect...
 --- !u!1 &300090604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2111,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1987696, y: 0.16259, z: -10}
+  m_LocalPosition: {x: 0.006849289, y: 0.16664, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5411,6 +5416,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructionPanel: {fileID: 611810298}
+  dialogueLines:
+  - Hey, you seem distracted.
+  - Remember what you were supposed to do?
+  - Go over the list if you forget!
 --- !u!1 &1249826645
 GameObject:
   m_ObjectHideFlags: 0
@@ -6199,6 +6208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructionPanel: {fileID: 611810298}
+  dialogueLines:
+  - Have a good day!
+  - oh and... check if you've left the stove on
 --- !u!1 &1429372215
 GameObject:
   m_ObjectHideFlags: 0
@@ -7219,6 +7231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructionPanel: {fileID: 611810298}
+  dialogueLines: []
 --- !u!61 &1676101346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8236,6 +8249,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructionPanel: {fileID: 611810298}
+  dialogueLines:
+  - Good day!
+  - Make sure to check the to-do list!
+  - Keep yourself focused and the tasks cleared!
+  - Good Luck!
 --- !u!61 &2141739358
 BoxCollider2D:
   m_ObjectHideFlags: 0
