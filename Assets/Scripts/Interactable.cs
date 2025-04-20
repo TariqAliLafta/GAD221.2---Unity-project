@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public GameObject instructionPanel; // assign in Inspector
+    public GameObject instructionPanel;
+    public string[] dialogueLines;
+
     private bool isPlayerNearby = false;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,8 +29,8 @@ public class Interactable : MonoBehaviour
     {
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.T))
         {
-            instructionPanel.SetActive(false); // hide the panel
-            DialogueManager.Instance.StartDialogue(); // show dialogue instead
+            instructionPanel.SetActive(false);
+            DialogueManager.Instance.StartDialogue(dialogueLines);
         }
     }
 }

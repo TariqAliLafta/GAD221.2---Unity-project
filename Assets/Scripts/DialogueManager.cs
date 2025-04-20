@@ -7,42 +7,50 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
-    private bool isDialogueOpen = false;
 
-    private string[] lines = {
-        "Hey there!",
-        "This world is a little overwhelming, isn't it?",
-        "Remember, you’ve got this!"
-    };
-    private int currentLine = 0;
+    private string[] currentDialogue;
+    private int currentLine;
+    private bool isDialogueOpen = false;
 
     void Awake()
     {
-        Instance = this;
-    }
-
-    public void StartDialogue()
-    {
-        dialoguePanel.SetActive(true);
-        currentLine = 0;
-        dialogueText.text = lines[currentLine];
-        isDialogueOpen = true;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     void Update()
     {
-        if (isDialogueOpen && Input.GetKeyDown(KeyCode.T))
+        if (isDialogueOpen)
         {
-            currentLine++;
-            if (currentLine < lines.Length)
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
-                dialogueText.text = lines[currentLine];
+                AdvanceDialogue();
             }
-            else
-            {
-                dialoguePanel.SetActive(false);
-                isDialogueOpen = false;
-            }
+        }
+    }
+
+    public void StartDialogue(string[] lines)
+    {
+        currentDialogue = lines;
+        currentLine = 0;
+        dialoguePanel.SetActive(true);
+        dialogueText.text = currentDialogue[currentLine];
+        isDialogueOpen = true;
+    }
+
+    private void AdvanceDialogue()
+    {
+        currentLine++;
+        if (currentLine < currentDialogue.Length)
+        {
+            dialogueText.text = currentDialogue[currentLine];
+        }
+        else
+        {
+            dialoguePanel.SetActive(false);
+            isDialogueOpen = false;
         }
     }
 }
