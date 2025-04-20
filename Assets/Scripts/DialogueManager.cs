@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogueText;
 
     private string[] currentDialogue;
+    private DialogueTrigger.TaskTrigger[] currentTaskTriggers;
+
     private int currentLine;
     private bool isDialogueOpen = false;
 
@@ -31,13 +33,16 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(string[] lines)
+    public void StartDialogue(string[] lines, DialogueTrigger.TaskTrigger[] taskTriggers = null)
     {
         currentDialogue = lines;
+        currentTaskTriggers = taskTriggers;
         currentLine = 0;
         dialoguePanel.SetActive(true);
         dialogueText.text = currentDialogue[currentLine];
         isDialogueOpen = true;
+
+        CheckTaskTrigger();  // Check if line 0 triggers anything
     }
 
     private void AdvanceDialogue()
@@ -46,11 +51,25 @@ public class DialogueManager : MonoBehaviour
         if (currentLine < currentDialogue.Length)
         {
             dialogueText.text = currentDialogue[currentLine];
+            CheckTaskTrigger();  // See if this line has a task
         }
         else
         {
             dialoguePanel.SetActive(false);
             isDialogueOpen = false;
+        }
+    }
+
+    private void CheckTaskTrigger()
+    {
+        if (currentTaskTriggers == null) return;
+
+        foreach (var task in currentTaskTriggers)
+        {
+            if (task.lineIndex == currentLine)
+            {
+                TaskManager.Instance.AddTask(task.taskText, true);
+            }
         }
     }
 }
