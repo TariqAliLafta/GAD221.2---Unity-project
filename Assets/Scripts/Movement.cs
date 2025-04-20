@@ -53,5 +53,15 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene("Main Menu");
         }
+
+        if (collision.gameObject.tag == "HouseEntry")
+        {
+            SceneManager.LoadScene("House");
+        }
+
+        if (collision.gameObject.tag == "HouseExit")
+        {
+            SceneManager.LoadScene("Level");
+        }
     }
 }

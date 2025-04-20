@@ -7,6 +7,8 @@ TagManager:
   - ground
   - BlackHole
   - Goal
+  - HouseEntry
+  - HouseExit
   layers:
   - Default
   - TransparentFX
