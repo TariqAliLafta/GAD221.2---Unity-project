@@ -36,13 +36,14 @@ public class TaskManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        AddTask("Go to grocery store and buy ingredients for meal", false);
+
     }
 
     private void Start()
     {
         // Add initial task on game start
         Debug.Log("Adding initial task...");
-        AddTask("Go to grocery store and buy ingredients for meal", false);
 
     }
 
@@ -53,7 +54,7 @@ public class TaskManager : MonoBehaviour
         Image scribble = taskUI.transform.Find("ScratchOverlay").GetComponent<Image>();
 
         taskText.text = description;
-        scribble.enabled = false;
+        scribble.enabled = false;   
 
         Task newTask = new Task(description, taskUI, scribble, false); // false = not a distraction by default
 
@@ -83,14 +84,7 @@ public class TaskManager : MonoBehaviour
 
     private void ScratchMainGoal(bool scratch)
     {
-        foreach (var task in taskList)
-        {
-            if (task.description == "Go to grocery store and buy ingredients for meal")
-            {
-                task.scribbleOverlay.enabled = scratch;
-                break;
-            }
-        }
+        taskList[0].scribbleOverlay.enabled = scratch;
     }
 
     public List<Task> GetCurrentTasks()
